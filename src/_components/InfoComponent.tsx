@@ -4,18 +4,15 @@ import { UserInfoProps } from "@/types/User";
 import Link from "next/link";
 import styled from "styled-components";
 import { GithubIcon, InstagramIcon } from "../styles/icons";
-import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import { mailtoFormatter, telFormatter } from "@/lib/functions";
+import { useTheme as useStyledTheme } from 'styled-components'
 
-export const UserInfoBtn: React.FC<UserInfoProps> = ({
+export const UserInfoBtn: React.FC<Omit<UserInfoProps, 'theme'>> = ({
   title,
   url,
-  clickAble,
-  theme,
 }) => {
-
-
+  const theme = useStyledTheme()
 
   return (
     <LinkBtnContainer>

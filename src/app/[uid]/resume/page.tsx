@@ -1,10 +1,10 @@
 'use client'
 
 import React, { use } from "react"
-import styled, { useTheme } from "styled-components"
 import { user } from "../../../../public/data/dummy/User"
 import { UserInfoProps } from "@/types/User"
 import { UserInfo, UserInfoBtn } from "@/_components/InfoComponent"
+import styled from "styled-components"
 
 
 
@@ -13,7 +13,6 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = ({
 }) => {
 
   const { uid } = use(params);
-  const theme = useTheme();
 
   console.log(uid)
 
@@ -28,13 +27,13 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = ({
           <UserInfoStringContainer>
             {user.info.map((item: UserInfoProps) => (
               item.type != "SNS" &&
-              <UserInfo key={user.name + "_" + item.title} title={item.title} url={item.url} type={item.type} clickAble={item.clickAble} theme={theme} />
+              <UserInfo key={user.name + "_" + item.title} title={item.title} url={item.url} type={item.type} clickAble={item.clickAble} />
             ))}
           </UserInfoStringContainer>
           <UserInfoBtnContainer>
             {user.info.map((item: UserInfoProps) => (
               item.type == "SNS" &&
-              <UserInfoBtn key={user.name + "_" + item.title} title={item.title} url={item.url} type={item.type} clickAble={item.clickAble} theme={theme} />
+              <UserInfoBtn key={user.name + "_" + item.title} title={item.title} url={item.url} type={item.type} clickAble={item.clickAble} />
             ))}
           </UserInfoBtnContainer>
         </UserInfoContainer>

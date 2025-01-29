@@ -45,10 +45,6 @@ const SunIcon = styled(Icon)`
   transition-delay: ${({ $isChecked }) => $isChecked ? '200ms' : '0ms'};
 `;
 
-const ToggleText = styled.span`
-  font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
-`;
 
 interface ThemeToggleProps {
   $isDarkMode: boolean;

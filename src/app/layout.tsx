@@ -5,7 +5,6 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "@/styles/theme";
 import { useState, useEffect } from "react";
 import GlobalStyle from "@/styles/GlobalStyles";
-import { StyleRegistry } from "styled-jsx";
 import StyledComponentsRegistry from "@/lib/StyleRegistry";
 import ThemeToggle from "@/_components/ThemeToggle";
 
