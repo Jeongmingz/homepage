@@ -41,4 +41,21 @@ export const user: UserType = {
       },
     },
   ],
+  subDescription: [
+    {
+      title: "안녕하세요",
+      context: "네 안녕하세요",
+      url: undefined,
+    },
+    {
+      title: "안녕하세요!",
+      context: "네 안녕하세요!",
+      url: undefined,
+    },
+    {
+      title: "안녕하세요?",
+      context: "네 안녕하세요?",
+      url: undefined,
+    },
+  ],
 };

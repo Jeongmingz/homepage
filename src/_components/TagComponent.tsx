@@ -3,13 +3,13 @@
 import { SkillTagProps, TagContainerProps, TagProps } from "@/types/tag"
 import styled from "styled-components"
 
-export const Tag: React.FC<TagProps> = ({ title, subTitle }) => {
+export const Tag: React.FC<TagProps> = ({ }) => {
   return (
     <></>
   )
 }
 
-export const SkillTag: React.FC<SkillTagProps> = ({ img, name }) => {
+export const SkillTag: React.FC<SkillTagProps> = ({ }) => {
   return (
     <></>
   )

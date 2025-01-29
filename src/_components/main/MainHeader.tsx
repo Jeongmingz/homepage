@@ -1,16 +1,16 @@
 'use client'
 
 import styled from "styled-components";
-import { user } from "../../public/data/dummy/User";
-import { UserInfo, UserInfoBtn } from "./InfoComponent";
+import { user } from "../../../public/data/dummy/User";
+import { UserInfo, UserInfoBtn } from "../InfoComponent";
 import { UserInfoProps } from "@/types/User";
 
 const MainHeader: React.FC = () => {
   return (
     <Header>
-      <h1>
+      <Name>
         {user.name}.
-      </h1>
+      </Name>
 
       <UserInfoContainer>
         <UserInfoStringContainer>
@@ -39,17 +39,19 @@ const Header = styled.div`
 
   justify-content: center;
   align-items: center;
-
-  gap: 16px;
 `;
+
+const Name = styled.h1`
+  justify-self: flex-start;
+  align-self: flex-start;
+`
 
 
 const UserInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-
-  align-self: flex-end;
-  justify-self: end;
+  align-items: end;
+  justify-content: end;
 
   gap:12px;
   flex: 1;

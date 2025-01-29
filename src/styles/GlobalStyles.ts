@@ -1,10 +1,5 @@
 "use client";
-import { Theme } from "@/types/theme";
 import { createGlobalStyle } from "styled-components";
-
-declare module "styled-components" {
-  export interface DefaultTheme extends Theme {}
-}
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -26,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     margin-top: 64px;
     display: flex;
     flex-direction: column;
+    gap: 32px;
     max-width: 1500px;
 
     padding: 0 20px;

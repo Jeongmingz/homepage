@@ -1,6 +1,7 @@
 export interface UserType {
   name: string;
   info: UserInfoProps[];
+  subDescription: DescriptionProps[];
 }
 
 export interface UserInfoProps {
@@ -11,4 +12,10 @@ export interface UserInfoProps {
     base: string;
     context: string;
   };
+}
+
+export interface DescriptionProps {
+  title: string;
+  context: string;
+  url: string | undefined;
 }

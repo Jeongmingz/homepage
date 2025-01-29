@@ -12,7 +12,6 @@ import { mailtoFormatter, telFormatter } from "@/lib/functions";
 export const UserInfoBtn: React.FC<UserInfoProps> = ({
   title,
   url,
-  type,
   clickAble,
 }) => {
   const [mounted, setMounted] = useState(false);
@@ -66,7 +65,6 @@ export const UserInfo: React.FC<UserInfoProps> = ({
   title,
   url,
   type,
-  clickAble,
 }) => {
   return (
     <LinkContainer>
@@ -109,6 +107,7 @@ const UserLink = styled(Link)`
 `;
 
 const Title = styled.span`
+  font-size: 1.125rem;
   min-width: 100px;
 `
 
