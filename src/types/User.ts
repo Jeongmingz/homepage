@@ -1,3 +1,5 @@
+import { Theme } from "./theme";
+
 export interface UserType {
   name: string;
   info: UserInfoProps[];
@@ -12,6 +14,7 @@ export interface UserInfoProps {
     base: string;
     context: string;
   };
+  theme?: Theme;
 }
 
 export interface DescriptionProps {

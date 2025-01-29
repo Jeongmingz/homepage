@@ -4,7 +4,6 @@ import { UserInfoProps } from "@/types/User";
 import Link from "next/link";
 import styled from "styled-components";
 import { GithubIcon, InstagramIcon } from "../styles/icons";
-import { useThemeContext } from "@/providers/ThemeProvider";
 import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import { mailtoFormatter, telFormatter } from "@/lib/functions";
@@ -13,17 +12,10 @@ export const UserInfoBtn: React.FC<UserInfoProps> = ({
   title,
   url,
   clickAble,
+  theme,
 }) => {
-  const [mounted, setMounted] = useState(false);
-  const themeContext = useThemeContext();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
-  if (!mounted || !clickAble || !themeContext) {
-    return null;
-  }
 
   return (
     <LinkBtnContainer>
@@ -39,21 +31,21 @@ export const UserInfoBtn: React.FC<UserInfoProps> = ({
           <InstagramIcon
             width={30}
             height={30}
-            color={themeContext.theme.colors.textSecondary}
+            color={theme.colors.textSecondary}
           />
         )}
         {title === "깃허브" && (
           <GithubIcon
             width={30}
             height={30}
-            color={themeContext.theme.colors.textSecondary}
+            color={theme.colors.textSecondary}
           />
         )}
         {title === "티스토리" && (
           <InstagramIcon
             width={30}
             height={30}
-            color={themeContext.theme.colors.textSecondary}
+            color={theme.colors.textSecondary}
           />
         )}
       </UserLink>
