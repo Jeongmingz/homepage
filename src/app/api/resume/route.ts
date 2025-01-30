@@ -1,14 +1,11 @@
-import { MongoClient, ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
+import { ObjectId } from "mongodb";
+import { connectToDatabase } from "@/lib/mongodb";
 
 export async function GET() {
-  const client = new MongoClient(
-    `mongodb+srv://${process.env.NEXT_PUBLIC_MONGO_ATLAS_USERNAME}:${process.env.NEXT_PUBLIC_MONGO_ATLAS_PASSWORD}@${process.env.NEXT_PUBLIC_MONGO_ATLAS_URL}/?retryWrites=true&w=majority&appName=homepage`
-  );
-
   try {
-    await client.connect();
-    const resume = client.db("homepage").collection("resume");
+    const { db } = await connectToDatabase();
+    const resume = db.collection("resume");
     const query = { _id: new ObjectId("679bb18509059cac9eadbc33") };
 
     const result = await resume.findOne(query);
@@ -16,7 +13,6 @@ export async function GET() {
     if (!result) {
       return NextResponse.json({ error: "No data found" }, { status: 404 });
     }
-    console.log(result);
     return NextResponse.json(result);
   } catch (error) {
     console.error(error);
@@ -24,7 +20,5 @@ export async function GET() {
       { error: "Failed to fetch data" },
       { status: 500 }
     );
-  } finally {
-    await client.close();
   }
 }

@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: false,
     tsconfigPath: "tsconfig.json",
   },
+  experimental: {
+    serverMinification: false, // MongoDB 연결 안정성 향상
+  },
   // 기본 환경 설정
   env: {},
   // 빌드 출력 디렉토리
