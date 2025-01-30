@@ -3,7 +3,7 @@ import { Theme } from "./theme";
 export interface UserType {
   name: string;
   info: UserInfoProps[];
-  subDescription: DescriptionProps[];
+  description: DescriptionProps;
 }
 
 export interface UserInfoProps {

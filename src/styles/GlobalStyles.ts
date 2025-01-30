@@ -15,17 +15,8 @@ const GlobalStyle = createGlobalStyle`
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
 
-  main {
-    flex: 1;
-    margin: 0 auto;
-    margin-top: 64px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+  main, section{
     max-width: 1500px;
-
-    padding: 0 20px;
-
     /* 예시: 해상도에 따라 max-width를 조절 */
     @media (max-width: 1200px) {
       max-width: 1100px;
@@ -42,6 +33,15 @@ const GlobalStyle = createGlobalStyle`
     @media (max-width: 500px) {
       max-width: 100%;
     }
+  }
+  main {
+    flex: 1;
+    margin: 0 auto;
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 20px;
   }
 
   h1 {
@@ -73,6 +73,7 @@ const GlobalStyle = createGlobalStyle`
   section {
     flex: 1;
     width: 100%;
+    
   }
 
   footer {

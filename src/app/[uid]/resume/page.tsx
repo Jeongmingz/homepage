@@ -1,20 +1,16 @@
 'use client'
 
-import React, { use } from "react"
+import React from "react"
 import { user } from "../../../../public/data/dummy/User"
 import { UserInfoProps } from "@/types/User"
 import { UserInfo, UserInfoBtn } from "@/_components/InfoComponent"
 import styled from "styled-components"
+import MarkdownEditor from '../../../_components/MarkdownEditor';
 
 
 
-const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = ({
-  params,
-}) => {
+const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = ({ }) => {
 
-  const { uid } = use(params);
-
-  console.log(uid)
 
   return (
     <main>
@@ -38,6 +34,19 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = ({
           </UserInfoBtnContainer>
         </UserInfoContainer>
       </Header>
+      {/* User Description (자기소개) 부분 START*/}
+      {user.description &&
+        <UserDescriptionSection>
+          <h3>
+            자기소개
+          </h3>
+          <p>{user.description.title} {user.description.context}</p>
+        </UserDescriptionSection>
+      }
+      {/* User Description (자기소개) 부분 END*/}
+
+      <MarkdownEditor />
+
     </main>
   )
 }
@@ -84,4 +93,8 @@ const UserInfoBtnContainer = styled.div`
   align-self: end;
   justify-self: end;
   gap: 12px;
+`
+
+const UserDescriptionSection = styled.section`
+  
 `

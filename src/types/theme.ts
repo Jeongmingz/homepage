@@ -1,5 +1,6 @@
 // types/theme.ts
 export interface Theme {
+  readonly name: string;
   readonly colors: {
     readonly background: string;
     readonly surface: string;
@@ -12,5 +13,6 @@ export interface Theme {
     readonly secondary: string;
     readonly accent: string;
     readonly info: string;
+    readonly themeToggle: string;
   };
 }

@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import GlobalStyle from "@/styles/GlobalStyles";
 import StyledComponentsRegistry from "@/lib/StyleRegistry";
 import ThemeToggle from "@/_components/ThemeToggle";
-import 'md-editor-rt/lib/style.css';
 
 // Props 타입 정의
 interface LayoutProps {
@@ -42,7 +41,7 @@ export default function Layout({ children }: LayoutProps) {
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
           <StyledComponentsRegistry>
             <GlobalStyle />
-            <ThemeToggle $isDarkMode={!isDarkMode} toggleTheme={toggleTheme} />
+            <ThemeToggle $isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
             {/* 자식 컴포넌트를 렌더링 */}
             {children}
           </StyledComponentsRegistry>

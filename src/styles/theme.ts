@@ -3,6 +3,7 @@
 import { Theme } from "@/types/theme";
 
 export const lightTheme: Theme = {
+  name: "light",
   colors: {
     background: "#FFFFFF",
     surface: "#F5F5F5",
@@ -15,21 +16,24 @@ export const lightTheme: Theme = {
     secondary: "#6B7280",
     accent: "#10B981",
     info: "#2563EB",
+    themeToggle: "#000",
   },
 };
 
 export const darkTheme: Theme = {
+  name: "dark",
   colors: {
     background: "#1E2337",
     surface: "#252B42",
     surfaceSecondary: "#2D355A",
-    text: "#A5BFCC", // 밝은 회색빛 하양으로 변경
-    textSecondary: "#CBD5E1", // 약간 더 어두운 회색빛
-    textTertiary: "#94A3B8", // 더 부드러운 회색조
+    text: "#D1E8FF" /* 주 텍스트 (가장 밝은 청회색) */,
+    textSecondary: "#AEC3D4" /* 보조 텍스트 */,
+    textTertiary: "#8FA8BF" /* 3차 텍스트 */,
     border: "#364067",
     primary: "#60A5FA",
     secondary: "#9CA3AF",
     accent: "#34D399",
     info: "#2563EB",
+    themeToggle: "#fff",
   },
 };
