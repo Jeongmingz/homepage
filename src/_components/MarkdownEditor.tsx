@@ -1,15 +1,30 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
-import { MdEditor, Themes } from 'md-editor-rt'
+import { MdEditor } from 'md-editor-rt'
 import { useTheme } from 'styled-components'
 import axiosInstance from '@/lib/axiosInstance'
 
 export default function MarkdownEditor() {
   const [text, setText] = useState('')
-  const [theme, setTheme] = useState<Themes>('dark')
-  const [isMount, setIsMount] = useState(false)
-  const systemTheme = useTheme()
+  const theme = useTheme();
+
+  const editorStyle = {
+    '--md-color': theme.colors.text,
+    '--md-bk-color': theme.colors.background,
+    '--md-border-color': theme.colors.border,
+    '--md-hover-color': theme.colors.surfaceSecondary,
+    '--md-code-bg-color': theme.colors.surface,
+    '--md-code-color': theme.colors.textSecondary,
+    '--md-pre-bg-color': theme.colors.surface,
+    '--md-pre-color': theme.colors.textSecondary,
+    '--md-a-color': theme.colors.primary,
+    '--md-a-hover-color': theme.colors.accent,
+    '--md-blockquote-color': theme.colors.textTertiary,
+    '--md-blockquote-bg-color': theme.colors.surfaceSecondary,
+    transition: 'all 0.2s ease-in-out',
+  } as React.CSSProperties;
+
 
   const handleImageUpload = useCallback(async (imageFile: File[]) => {
     const formData = new FormData();
@@ -35,9 +50,9 @@ export default function MarkdownEditor() {
       console.log(error)
       return "이미지 업로드 실패"
     }
-
-
   }, [])
+
+
   // 클립보드 붙여넣기 핸들러
   const handlePaste = useCallback(async (event: ClipboardEvent) => {
     const items = event.clipboardData?.items
@@ -63,21 +78,12 @@ export default function MarkdownEditor() {
 
   // 테마 설정 및 클립보드 이벤트 리스너 등록
   useEffect(() => {
-    if (systemTheme.name === 'dark') {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-    setIsMount(true)
-
     // 클립보드 이벤트 리스너 추가
     document.addEventListener('paste', handlePaste)
     return () => {
       document.removeEventListener('paste', handlePaste)
     }
-  }, [systemTheme, handlePaste])
-
-  if (!isMount) return null
+  }, [handlePaste])
 
   return (
     <div className="md-editor-container">
@@ -90,11 +96,13 @@ export default function MarkdownEditor() {
           'preview',
           'htmlPreview',
         ]}
-        modelValue={text}
+        value={text}
         onChange={setText}
-        theme={theme}
+        theme={theme.name}
         language="en-US"
         onUploadImg={handleImageUpload}
+        style={editorStyle}
+        className="custom-editor"
       />
 
       <input

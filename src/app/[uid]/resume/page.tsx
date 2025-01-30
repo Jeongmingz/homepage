@@ -1,15 +1,38 @@
 'use client'
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { user } from "../../../../public/data/dummy/User"
 import { UserInfoProps } from "@/types/User"
 import { UserInfo, UserInfoBtn } from "@/_components/InfoComponent"
 import styled from "styled-components"
-import MarkdownEditor from '../../../_components/MarkdownEditor';
+import { ResumeCareerData, ResumeData, ResumeProjectData } from "@/types/mongo"
+import MarkdownDisplay from "@/_components/MarkdownDisplay"
 
 
+const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
+  const [data, setData] = useState<ResumeData>();
 
-const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = ({ }) => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/resume');
+      console.log(response)
+      const result = await response.json();
+      console.log(result)
+      setData(result as ResumeData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (!data) {
+    return (
+      <></>
+    )
+  }
 
 
   return (
@@ -35,21 +58,40 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = ({ }) => {
         </UserInfoContainer>
       </Header>
       {/* User Description (자기소개) 부분 START*/}
-      {user.description &&
+      {/* {user.description &&
         <UserDescriptionSection>
           <h3>
             자기소개
           </h3>
           <p>{user.description.title} {user.description.context}</p>
         </UserDescriptionSection>
-      }
+      } */}
       {/* User Description (자기소개) 부분 END*/}
 
-      <MarkdownEditor />
+
+      <section>
+        {data && (
+          data.careers.map((item: ResumeCareerData, index: number) => (
+            <div key={`career-${item.order}-${index}`}>
+              <MarkdownDisplay content={item.content} />
+            </div>
+          ))
+        )}
+      </section>
+
+      <section>
+        {data && (
+          data.projects.map((item: ResumeProjectData, index: number) => (
+            <div key={`projects-${item.order}-${index}`}>
+              <MarkdownDisplay content={item.content} />
+            </div>
+          ))
+        )}
+      </section>
 
     </main>
   )
-}
+};
 
 
 export default ResumePage;
@@ -95,6 +137,6 @@ const UserInfoBtnContainer = styled.div`
   gap: 12px;
 `
 
-const UserDescriptionSection = styled.section`
+// const UserDescriptionSection = styled.section`
   
-`
+// `

@@ -12,8 +12,17 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.background};
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
+
+  html, body, .md-editor, .md-editor-preview, .md-editor-container{
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.custom-editor {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+
 
   main, section{
     max-width: 1500px;
@@ -139,6 +148,8 @@ const GlobalStyle = createGlobalStyle`
   :root[data-theme="light"] {
     color-scheme: light;
   }
+
+
 `;
 
 export default GlobalStyle;
