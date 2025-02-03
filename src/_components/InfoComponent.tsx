@@ -97,7 +97,7 @@ const UserLink = styled(Link)`
 
 const Title = styled.span`
   font-size: 1.125rem;
-  min-width: 100px;
+  min-width: 75px;
 `
 
 const Context = styled.span`

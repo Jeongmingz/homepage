@@ -9,20 +9,25 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 160%;
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.background};
   }
 
   html, body, .md-editor, .md-editor-preview, .md-editor-container{
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
 
-.custom-editor {
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
+  .custom-editor {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  .md-editor-preview-wrapper {
+    padding: 0;
+  }
 
-
+  .md-editor-copy-button{
+    display: none;
+  }
 
   main, section{
     max-width: 1500px;
@@ -56,8 +61,8 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     color: ${({ theme }) => theme.colors.text};
     font-size: 5.25rem;
-      margin: 0;
-      font-weight: 1000;
+    margin: 0;
+    font-weight: 1000;
 
     @media (max-width: 1024px) {
       font-size: 4.25rem;
@@ -103,7 +108,7 @@ const GlobalStyle = createGlobalStyle`
   h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     color: ${({ theme }) => theme.colors.text};
   }
 

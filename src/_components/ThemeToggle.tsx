@@ -10,6 +10,8 @@ const Container = styled.div`
 
   right: 8px;
   bottom: 20px;
+
+  z-index: 9999;
 `;
 
 const ToggleLabel = styled.label`

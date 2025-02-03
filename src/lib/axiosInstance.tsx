@@ -23,18 +23,18 @@ axiosInstance.interceptors.request.use(
 );
 
 // 응답 인터셉터: 토큰 갱신 또는 오류 처리
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
+// axiosInstance.interceptors.response.use(
+//   (response) => response,
+//   async (error) => {
+//     const originalRequest = error.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      // 여기에 토큰 갱신 로직을 구현하세요
-    }
+//     if (error.response.status === 401 && !originalRequest._retry) {
+//       originalRequest._retry = true;
+//       // 여기에 토큰 갱신 로직을 구현하세요
+//     }
 
-    return Promise.reject(error);
-  }
-);
+//     return Promise.reject(error);
+//   }
+// );
 
 export default axiosInstance;
