@@ -6,10 +6,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  position: absolute;
+  position: fixed;
 
   right: 8px;
-  bottom: 12px;
+  bottom: 20px;
+
+  z-index: 9999;
 `;
 
 const ToggleLabel = styled.label`

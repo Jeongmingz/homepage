@@ -1,38 +1,45 @@
 'use client'
 
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { user } from "../../../../public/data/dummy/User"
 import { UserInfoProps } from "@/types/User"
 import { UserInfo, UserInfoBtn } from "@/_components/InfoComponent"
 import styled from "styled-components"
-import { ResumeCareerData, ResumeData, ResumeProjectData } from "@/types/mongo"
-import MarkdownDisplay from "@/_components/MarkdownDisplay"
+import { ResumeCareerData } from "@/types/mongo"
+import { colors } from "@/styles/colors"
+import CareerProjectComponent from "@/_components/CareerProjectComponent"
+import { exampleResumeData } from "../../../../public/data/dummy/test"
 
 
 const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
-  const [data, setData] = useState<ResumeData>();
+  // const [data, setData] = useState<ResumeData>(exampleResumeData);
+  // const [careerYears, setCareerYears] = useState<YearsData>(exampleResumeData.careerYears[0]);
+  const data = exampleResumeData;
+  const careerYears = data.careerYears[0];
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch('/api/resume');
-      console.log(response)
-      const result = await response.json();
-      console.log(result)
-      setData(result as ResumeData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axiosInstance.get(`/resume?id=550e8400-e29b-41d4-a716-446655440000`)
+  //     console.log(response.data)
+  //     if (response.status === 200) {
+  //       setData(response.data)
+  //     }
+  //   }
+  //   catch (e) {
+  //     console.log(e)
+  //   }
+  // }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  if (!data) {
-    return (
-      <></>
-    )
-  }
+  // useEffect(() => {
+  //   if (data) {
+  //     setCareerYears(calculateTotalCareer(data.careerYears))
+  //   }
+  // }, [data])
+
 
 
   return (
@@ -69,26 +76,23 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
       {/* User Description (자기소개) 부분 END*/}
 
 
-      <section>
-        {data && (
-          data.careers.map((item: ResumeCareerData, index: number) => (
-            <div key={`career-${item.order}-${index}`}>
-              <MarkdownDisplay content={item.content} />
-            </div>
-          ))
-        )}
-      </section>
 
-      <section>
-        {data && (
-          data.projects.map((item: ResumeProjectData, index: number) => (
-            <div key={`projects-${item.order}-${index}`}>
-              <MarkdownDisplay content={item.content} />
-            </div>
-          ))
-        )}
-      </section>
+      {data && careerYears && (
+        <PartSection>
+          <PartTitle>
+            경력<span>{careerYears.years.year}년 {careerYears.years.year}개월차</span>
+          </PartTitle>
+          {
+            data.careers.map((item: ResumeCareerData, index: number) => (
+              <CareerProjectComponent
+                key={`company-${index + 1}`}
+                career={item}
+                careerYear={data.careerYears[index]} />
+            ))
+          }
 
+        </PartSection>
+      )}
     </main>
   )
 };
@@ -137,6 +141,27 @@ const UserInfoBtnContainer = styled.div`
   gap: 12px;
 `
 
-// const UserDescriptionSection = styled.section`
-  
-// `
+const PartSection = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 40px;
+`
+
+const PartTitle = styled.h2`
+  display: flex;
+  flex-direction: row;
+
+  gap: 8px;
+  align-items: end;
+
+  font-size: 32px;
+  font-weight: 700;
+
+  & > span {
+    font-size: 16px;
+    font-weight: 600;
+    color: ${colors.info};
+    line-height: 100%;
+  }
+`

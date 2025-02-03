@@ -5,7 +5,7 @@ import { Theme } from "@/types/theme";
 export const lightTheme: Theme = {
   name: "light",
   colors: {
-    background: "#FFFFFF",
+    background: "#ECECEC",
     surface: "#F5F5F5",
     surfaceSecondary: "#F9FAFB",
     text: "#1A1A1A",
@@ -17,6 +17,8 @@ export const lightTheme: Theme = {
     accent: "#10B981",
     info: "#2563EB",
     themeToggle: "#000",
+    tagBackground: "#3B82F6",
+    tagText: "#FFF",
   },
 };
 
@@ -35,5 +37,7 @@ export const darkTheme: Theme = {
     accent: "#34D399",
     info: "#2563EB",
     themeToggle: "#fff",
+    tagBackground: "#60A5FA",
+    tagText: "#1E2337",
   },
 };

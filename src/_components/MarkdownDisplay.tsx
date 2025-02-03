@@ -11,7 +11,7 @@ export default function MarkdownDisplay({ content }: MarkdownDisplayProps) {
   const theme = useTheme();
   const previewStyle = {
     '--md-color': theme.colors.text,
-    '--md-bk-color': theme.colors.background,
+    '--md-bk-color': "none",
     '--md-border-color': theme.colors.border,
     '--md-hover-color': theme.colors.surfaceSecondary,
     '--md-code-bg-color': theme.colors.surface,

@@ -14,5 +14,7 @@ export interface Theme {
     readonly accent: string;
     readonly info: string;
     readonly themeToggle: string;
+    readonly tagBackground: string;
+    readonly tagText: string;
   };
 }
