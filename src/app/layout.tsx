@@ -8,11 +8,21 @@ import GlobalStyle from "@/styles/GlobalStyles";
 import StyledComponentsRegistry from "@/lib/StyleRegistry";
 import ThemeToggle from "@/_components/ThemeToggle";
 import 'md-editor-rt/lib/style.css';
+import { Noto_Sans_KR } from 'next/font/google';
 
 // Props 타입 정의
 interface LayoutProps {
   children: ReactNode; // children prop 타입 정의
 }
+
+export const notoSansKr = Noto_Sans_KR({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '900'],
+  variable: '--font-noto-sans-kr',
+  display: 'swap',
+});
+
+
 
 export default function Layout({ children }: LayoutProps) {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -38,7 +48,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <html>
-      <body>
+      <body className={notoSansKr.variable}>
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
           <StyledComponentsRegistry>
             <GlobalStyle />
