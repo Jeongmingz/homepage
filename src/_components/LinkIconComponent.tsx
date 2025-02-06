@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaHome, FaLinkedin, FaBlogger, FaEnvelope, FaFigma } from 'react-icons/fa';
+import { FaGithub, FaHome, FaLinkedin, FaBlogger, FaEnvelope, FaFigma, FaInstagram } from 'react-icons/fa';
 import { BiLink } from 'react-icons/bi';
 
 interface LinkIconProps {
@@ -20,6 +20,8 @@ const LinkIconComponent: React.FC<LinkIconProps> = ({ name }) => {
       return <FaEnvelope />;
     case 'figma':
       return <FaFigma />;
+    case 'instagram':
+      return <FaInstagram />;
     default:
       return <BiLink />;
   }

@@ -23,7 +23,7 @@ const CareerComponent: React.FC<ProjectProps> = ({ date, years, data }) => {
           {dateFormatter(date.start)} ~ {dateFormatter(date.end)}
         </DateRange>
         <Status $completed={data.status}>
-          {data.status ? '재직 중' : '완료'}
+          {data.status ? '재직 중' : '퇴사'}
         </Status>
       </LeftSide>
       <RightSide>
@@ -54,12 +54,12 @@ const CareerComponent: React.FC<ProjectProps> = ({ date, years, data }) => {
                   </CompanyRole>
                 ))}
               </RoleContainer>
-              {data.link && (
+              {data.link.length != 0 && (
                 <TeamLinks>
                   <TeamName>링크</TeamName>
                   {data.link.map((link: ResumeLinkData, index: number) => (
                     <LinkButton key={`team-link-${index}`} href={link.uri} target="_blank" rel="noopener noreferrer">
-                      <LinkIconComponent name={link.name} />
+                      <LinkIconComponent name={link.type} />
                       <span>{link.name}</span>
                     </LinkButton>
                   ))}
@@ -83,30 +83,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   gap: 40px;
-  padding: 24px;
-  background-color: ${({ theme }) => theme.colors.background};
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
 
-  &:hover {
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-  }
 
   @media (max-width: 768px) {
     width: 100%;
-    padding: 0;
     flex-direction: column;
     gap: 20px;
-    transition: none;
-    box-shadow: none;
-    border-radius: 0;
-
-    &:hover {
-      transform: none;
-      box-shadow: none;
-    }
   }
 `
 
@@ -155,7 +137,7 @@ const Status = styled.span<{ $completed: boolean }>`
   font-size: 12px;
   border-radius: 4px;
   font-weight: 700;
-  background-color: ${props => props.$completed ? colors.warning : colors.success};
+  background-color: ${props => props.$completed ? colors.warning : colors.error};
   color: ${({ theme }) => theme.colors.background};
 `
 
@@ -248,6 +230,11 @@ const TeamLinks = styled.div`
 
 
 const LinkButton = styled.a`
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+
   font-size: 14px;
   text-decoration: none;
   transition: background-color 0.2s;

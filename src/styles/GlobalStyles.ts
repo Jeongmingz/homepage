@@ -22,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     font-size: 16px;
-    line-height: 160%;
     font-family: var(--font-noto-sans-kr), sans-serif;
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.background};
@@ -92,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     @media (max-width: 500px) {
-      font-size: 2.5rem;
+      font-size: 4.25rem;
       margin: 0;
       font-weight: 700;
     }

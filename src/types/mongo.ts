@@ -4,6 +4,7 @@ export interface ResumeData {
   projects: ResumeProjectData[];
   careers: ResumeCareerData[];
   careerYears: YearsData[];
+  descriptions: ResumeDescriptionData[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -31,6 +32,11 @@ export interface ResumeCareerData {
   content: string; // markdown
 }
 
+export interface ResumeDescriptionData {
+  type: string;
+  content: string;
+}
+
 // Team Interface
 export interface CompanyTeamData {
   position: string; // 직책
@@ -48,6 +54,7 @@ export interface ProjectTeamData {
 export interface ResumeLinkData {
   uri: string;
   name: string;
+  type: string; // github, instagram, homepage, figma, linkedin, email, blog
 }
 
 export interface YearsData {

@@ -5,16 +5,18 @@ import { user } from "../../../../public/data/dummy/User"
 import { UserInfoProps } from "@/types/User"
 import { UserInfo, UserInfoBtn } from "@/_components/InfoComponent"
 import styled from "styled-components"
-import { ResumeCareerData } from "@/types/mongo"
+import { ResumeCareerData, ResumeDescriptionData, ResumeProjectData } from "@/types/mongo"
 import { colors } from "@/styles/colors"
 import CareerProjectComponent from "@/_components/CareerProjectComponent"
-import { exampleResumeData } from "../../../../public/data/dummy/test"
+import { JumpitResumeData } from "../../../../public/data/dummy/test"
+import ProjectComponent from "@/_components/ProjectComponent"
+import MarkdownDisplay from "@/_components/MarkdownDisplay"
 
 
 const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
-  // const [data, setData] = useState<ResumeData>(exampleResumeData);
+  // const [data, setData] = useState<ResumeData>(JumpitResumeData);
   // const [careerYears, setCareerYears] = useState<YearsData>(exampleResumeData.careerYears[0]);
-  const data = exampleResumeData;
+  const data = JumpitResumeData;
   const careerYears = data.careerYears[0];
 
   // const fetchData = async () => {
@@ -64,35 +66,66 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
           </UserInfoBtnContainer>
         </UserInfoContainer>
       </Header>
-      {/* User Description (자기소개) 부분 START*/}
-      {/* {user.description &&
-        <UserDescriptionSection>
-          <h3>
-            자기소개
-          </h3>
-          <p>{user.description.title} {user.description.context}</p>
-        </UserDescriptionSection>
-      } */}
-      {/* User Description (자기소개) 부분 END*/}
 
 
+      <PartContainer>
+        <SubPartContainer>
+          <PartTitle>소개</PartTitle>
+          {/* {(() => {
+            const listItem = data.descriptions.find((item: ResumeDescriptionData) => item.type === "list");
+            return listItem &&
+              <DescriptionContainer>
+                <PartSubTitle>핵심역량</PartSubTitle>
+                <MarkdownDisplay content={listItem.content} />
+              </DescriptionContainer>
+          })()}
 
-      {data && careerYears && (
-        <PartSection>
-          <PartTitle>
-            경력<span>{careerYears.years.year}년 {careerYears.years.year}개월차</span>
-          </PartTitle>
-          {
-            data.careers.map((item: ResumeCareerData, index: number) => (
-              <CareerProjectComponent
-                key={`company-${index + 1}`}
-                career={item}
-                careerYear={data.careerYears[index]} />
-            ))
-          }
+          {(() => {
+            const listItem = data.descriptions.find((item: ResumeDescriptionData) => item.type === "intro");
+            return listItem &&
+              <DescriptionContainer>
+                <PartSubTitle>짧은소개</PartSubTitle>
+                <MarkdownDisplay content={listItem.content} />
+              </DescriptionContainer>
+          })()} */}
+          {data.descriptions.map((description: ResumeDescriptionData, index: number) => (
+            <DescriptionContainer key={`description-${index + 1}`}>
+              <PartSubTitle>{description.type}</PartSubTitle>
+              <MarkdownDisplay content={description.content} />
+            </DescriptionContainer>
+          ))}
+        </SubPartContainer>
 
-        </PartSection>
-      )}
+
+        {data &&
+          data.careers && careerYears && (
+            <PartSection>
+              <PartTitle>
+                경력<span>{careerYears.years.year}년 {careerYears.years.month}개월차</span>
+              </PartTitle>
+              {data.careers.map((item: ResumeCareerData, index: number) => (
+                <CareerProjectComponent
+                  key={`company-${index + 1}`}
+                  career={item}
+                  careerYear={careerYears} />
+              ))}
+            </PartSection>
+          )}
+
+        {data && data.projects && (
+          <PartSection>
+            <PartTitle>
+              프로젝트
+            </PartTitle>
+            {data.projects.map((item: ResumeProjectData, index: number) => (
+              <ProjectComponent
+                key={`project-${index + 1}`}
+                project={item}
+              />
+            ))}
+          </PartSection>
+        )}
+      </PartContainer>
     </main>
   )
 };
@@ -108,6 +141,11 @@ const Header = styled.div`
 
   justify-content: center;
   align-items: center;
+  padding-bottom: 52px;
+  @media (max-width: 500px) {
+    gap: 40px; /* 줄바꿈 발생 시점에 간격 적용 */
+    padding-bottom: 20px;
+  }
 `;
 
 const Name = styled.h1`
@@ -141,11 +179,32 @@ const UserInfoBtnContainer = styled.div`
   gap: 12px;
 `
 
+const PartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 80px;
+`
+
 const PartSection = styled.div`
   display: flex;
   flex-direction: column;
 
   gap: 40px;
+  padding-bottom: 80px;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.themeToggle};
+  & > div {
+    margin: 0 20px;
+  }
+
+  @media (max-width: 500px) {
+    padding-bottom: 40px;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.themeToggle};
+    & > div {
+      margin: 0;
+    }
+  }
+
 `
 
 const PartTitle = styled.h2`
@@ -156,7 +215,7 @@ const PartTitle = styled.h2`
   align-items: end;
 
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 800;
 
   & > span {
     font-size: 16px;
@@ -164,4 +223,45 @@ const PartTitle = styled.h2`
     color: ${colors.info};
     line-height: 100%;
   }
+`
+
+const SubPartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 80px;
+
+  border-bottom: 2px solid ${({ theme }) => theme.colors.themeToggle};
+  & > div {
+    margin: 0 20px;
+  }
+
+  @media (max-width: 500px) {
+    padding-bottom: 40px;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.themeToggle};
+    & > div {
+      margin: 0;
+    }
+  }
+
+`
+
+const PartSubTitle = styled.h2`
+  display: flex;
+  flex-direction: row;
+
+  gap: 8px;
+  align-items: end;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  color: ${({ theme }) => theme.colors.text};
+
+  margin: 0;
+  padding: 0;
+`
+const DescriptionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `
