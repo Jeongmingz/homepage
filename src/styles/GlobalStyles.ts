@@ -2,6 +2,19 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    font-family: var(--font-noto-sans-kr), sans-serif;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+  }
+  
+  :root[data-theme="light"] {
+    color-scheme: light;
+  }
+
+
   * {
     padding: 0;
     margin: 0;
@@ -9,12 +22,13 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     font-size: 16px;
-    line-height: 160%;
+    font-family: var(--font-noto-sans-kr), sans-serif;
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.background};
   }
 
   html, body, .md-editor, .md-editor-preview, .md-editor-container{
+    font-family: var(--font-noto-sans-kr), sans-serif;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
 
@@ -77,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     @media (max-width: 500px) {
-      font-size: 2.5rem;
+      font-size: 4.25rem;
       margin: 0;
       font-weight: 700;
     }
@@ -144,14 +158,6 @@ const GlobalStyle = createGlobalStyle`
   img {
     max-width: 100%;
     height: auto;
-  }
-
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-  }
-  
-  :root[data-theme="light"] {
-    color-scheme: light;
   }
 
 

@@ -41,20 +41,24 @@ const ProjectComponent: React.FC<ProjectComponentProps> = ({ project }) => {
 
         <RoleContainer>
           <TeamName>역할</TeamName>
-          {project.team.role.map((role: string, index: number) => (
-            <RoleTag key={`role-${index}`}>{role}</RoleTag>
-          ))}
+          <RoleTags>
+            {project.team.role.map((role: string, index: number) => (
+              <RoleTag key={`role-${index}`}>{role}</RoleTag>
+            ))}
+          </RoleTags>
         </RoleContainer>
 
-        {project.team.link && (
+        {project.team.link.length != 0 && (
           <TeamLinks>
             <TeamName>링크</TeamName>
-            {project.team.link.map((link: ResumeLinkData, index: number) => (
-              <LinkButton key={`team-link-${index}`} href={link.uri} target="_blank" rel="noopener noreferrer">
-                <LinkIconComponent name={link.name} />
-                <span>{link.name}</span>
-              </LinkButton>
-            ))}
+            <RoleTags>
+              {project.link.map((link: ResumeLinkData, index: number) => (
+                <LinkButton key={`team-link-${index}`} href={link.uri} target="_blank" rel="noopener noreferrer">
+                  <LinkIconComponent name={link.type} />
+                  <span>{link.name}</span>
+                </LinkButton>
+              ))}
+            </RoleTags>
           </TeamLinks>
         )}
         <ContentWrapper>
@@ -141,17 +145,22 @@ const ProjectHeader = styled.div`
 `
 
 const ProjectName = styled.h3`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.textPrimary};
   margin: 0;
 
   @media (max-width: 768px) {
-    font-size: 18px;
+    font-size: 20px;
   }
 `
 
 const LinkButton = styled.a`
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+
   font-size: 14px;
   text-decoration: none;
   transition: background-color 0.2s;
@@ -180,12 +189,12 @@ const SkillTag = styled.span`
 
 const TeamInfo = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 12px;
 `
 
 const TeamName = styled.span`
-  width: 35px;
+  min-width: 35px;
   font-size: 16px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.textPrimary};
@@ -198,8 +207,15 @@ const TeamMember = styled.span`
 
 const RoleContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  align-items: start;
   gap: 12px;
+`
+
+const RoleTags = styled.div`
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 8px;
 `
 
 const RoleTag = styled.span`
