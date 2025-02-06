@@ -22,7 +22,6 @@ export function calculateTotalCareer(careerYear: YearsData[]) {
 }
 
 export function dateFormatter(date: string) {
-  console.log(date);
   if (date == "재직중" || date == "진행중") {
     return date;
   }

@@ -3,10 +3,10 @@
 import { UserInfoProps } from "@/types/User";
 import Link from "next/link";
 import styled from "styled-components";
-import { GithubIcon, InstagramIcon } from "../styles/icons";
 import { Tooltip } from "react-tooltip";
 import { mailtoFormatter, telFormatter } from "@/lib/functions";
 import { useTheme as useStyledTheme } from 'styled-components'
+import { FaBlog, FaGithub, FaInstagram } from "react-icons/fa";
 
 export const UserInfoBtn: React.FC<Omit<UserInfoProps, 'theme'>> = ({
   title,
@@ -25,25 +25,13 @@ export const UserInfoBtn: React.FC<Omit<UserInfoProps, 'theme'>> = ({
         data-tooltip-place="top"
       >
         {title === "인스타그램" && (
-          <InstagramIcon
-            width={30}
-            height={30}
-            color={theme.colors.textSecondary}
-          />
+          <FaInstagram size={30} />
         )}
         {title === "깃허브" && (
-          <GithubIcon
-            width={30}
-            height={30}
-            color={theme.colors.textSecondary}
-          />
+          <FaGithub size={30} />
         )}
         {title === "티스토리" && (
-          <InstagramIcon
-            width={30}
-            height={30}
-            color={theme.colors.textSecondary}
-          />
+          <FaBlog size={30} />
         )}
       </UserLink>
     </LinkBtnContainer>

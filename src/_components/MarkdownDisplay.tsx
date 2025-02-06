@@ -23,6 +23,7 @@ export default function MarkdownDisplay({ content }: MarkdownDisplayProps) {
     '--md-blockquote-color': theme.colors.textTertiary,
     '--md-blockquote-bg-color': theme.colors.surfaceSecondary,
     transition: 'all 0.2s ease-in-out',
+    backgroundColor: 'none'
   } as React.CSSProperties;
 
 

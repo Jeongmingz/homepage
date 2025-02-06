@@ -118,13 +118,14 @@ const DateRange = styled.p`
 `
 
 const Status = styled.span<{ $completed: boolean }>`
-  width: 50px;
+  max-width: 50px;
+  padding: 4px 8px;
   text-align: center;
   font-size: 12px;
   border-radius: 4px;
-  font-weight: 700;
+  font-weight: 500;
+  color: ${colors.white};
   background-color: ${props => props.$completed ? colors.warning : colors.success};
-  color: ${({ theme }) => theme.colors.background};
 `
 
 const RightSide = styled.div`

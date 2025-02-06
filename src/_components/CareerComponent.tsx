@@ -132,13 +132,14 @@ const Years = styled.p`
 
 
 const Status = styled.span<{ $completed: boolean }>`
-  width: 50px;
+  max-width: 50px;
+  padding: 4px 8px;
   text-align: center;
   font-size: 12px;
   border-radius: 4px;
-  font-weight: 700;
-  background-color: ${props => props.$completed ? colors.warning : colors.error};
-  color: ${({ theme }) => theme.colors.background};
+  font-weight: 500;
+  color: ${colors.white};
+  background-color: ${props => props.$completed ? colors.success : colors.error};
 `
 
 const RightSide = styled.div`

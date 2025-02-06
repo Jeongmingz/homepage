@@ -1,6 +1,6 @@
 'use client'
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { user } from "../../../../public/data/dummy/User"
 import { UserInfoProps } from "@/types/User"
 import { UserInfo, UserInfoBtn } from "@/_components/InfoComponent"
@@ -11,6 +11,7 @@ import CareerProjectComponent from "@/_components/CareerProjectComponent"
 import { JumpitResumeData } from "../../../../public/data/dummy/test"
 import ProjectComponent from "@/_components/ProjectComponent"
 import MarkdownDisplay from "@/_components/MarkdownDisplay"
+import HeaderAlertComponent from "@/_components/HeaderAlertComponent"
 
 
 const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
@@ -18,6 +19,21 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
   // const [careerYears, setCareerYears] = useState<YearsData>(exampleResumeData.careerYears[0]);
   const data = JumpitResumeData;
   const careerYears = data.careerYears[0];
+  const [showHeaderAlert, setShowHeaderAlert] = useState<boolean>();
+
+  useEffect(() => {
+    const stat = sessionStorage.getItem("HeaderAlert_stat")
+    if (stat == "true" || stat == null) {
+      setShowHeaderAlert(true)
+    } else if (stat == "false") {
+      setShowHeaderAlert(false)
+    }
+  }, [])
+
+  const closeHeaderAlert = () => {
+    setShowHeaderAlert(false)
+    sessionStorage.setItem("HeaderAlert_stat", "false")
+  }
 
   // const fetchData = async () => {
   //   try {
@@ -46,6 +62,11 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
 
   return (
     <main>
+      {showHeaderAlert && (
+        <HeaderAlertComponent isShow={showHeaderAlert} alertClose={closeHeaderAlert}>
+          <span>이력서 생성/수정이 불가능한 버전입니다.</span>
+        </HeaderAlertComponent>
+      )}
       <Header>
         <Name>
           {user.name}.

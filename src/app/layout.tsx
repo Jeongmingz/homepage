@@ -25,15 +25,15 @@ export const notoSansKr = Noto_Sans_KR({
 
 
 export default function Layout({ children }: LayoutProps) {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // 사용자 테마 설정 저장 및 로드
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
+      setIsDarkMode(savedTheme === "light");
     } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia("(prefers-color-scheme: light)").matches;
       setIsDarkMode(prefersDark);
     }
   }, []);
@@ -41,7 +41,7 @@ export default function Layout({ children }: LayoutProps) {
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => {
       const newMode = !prevMode;
-      localStorage.setItem("theme", newMode ? "dark" : "light");
+      localStorage.setItem("theme", newMode ? "light" : "dark");
       return newMode;
     });
   };

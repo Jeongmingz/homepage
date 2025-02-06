@@ -42,12 +42,10 @@ export default function MarkdownEditor() {
 
 
       if (response.status === 200) {
-        console.log(response.data);
         return response.data.url
       }
     }
     catch (error) {
-      console.log(error)
       return "이미지 업로드 실패"
     }
   }, [])
