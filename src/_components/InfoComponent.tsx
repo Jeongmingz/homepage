@@ -5,15 +5,12 @@ import Link from "next/link";
 import styled from "styled-components";
 import { Tooltip } from "react-tooltip";
 import { mailtoFormatter, telFormatter } from "@/lib/functions";
-import { useTheme as useStyledTheme } from 'styled-components'
 import { FaBlog, FaGithub, FaInstagram } from "react-icons/fa";
 
 export const UserInfoBtn: React.FC<Omit<UserInfoProps, 'theme'>> = ({
   title,
   url,
 }) => {
-  const theme = useStyledTheme()
-
   return (
     <LinkBtnContainer>
       <Tooltip id={`link_tooltip_` + title} />

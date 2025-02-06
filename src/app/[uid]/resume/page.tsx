@@ -63,7 +63,7 @@ const ResumePage: React.FC<{ params: Promise<{ uid: string }> }> = () => {
   return (
     <main>
       {showHeaderAlert && (
-        <HeaderAlertComponent isShow={showHeaderAlert} alertClose={closeHeaderAlert}>
+        <HeaderAlertComponent alertClose={closeHeaderAlert}>
           <span>이력서 생성/수정이 불가능한 버전입니다.</span>
         </HeaderAlertComponent>
       )}

@@ -46,7 +46,7 @@ export default function MarkdownEditor() {
       }
     }
     catch (error) {
-      return "이미지 업로드 실패"
+      return "이미지 업로드 실패: " + error;
     }
   }, [])
 

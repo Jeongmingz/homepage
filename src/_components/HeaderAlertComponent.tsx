@@ -3,13 +3,11 @@ import { RiCloseLargeFill } from "react-icons/ri";
 import styled from "styled-components";
 
 interface HeaderAlertProps {
-  isShow: boolean;
   alertClose: () => void;
   children: React.ReactNode;
 }
 
 const HeaderAlertComponent: React.FC<HeaderAlertProps> = ({
-  isShow,
   alertClose,
   children
 }) => {
